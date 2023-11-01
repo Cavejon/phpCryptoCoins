@@ -13,29 +13,38 @@ $id_usuario = mysqli_real_escape_string($conn, $_POST['id']);
 $nome = mysqli_real_escape_string($conn, ucwords(strtolower($_POST['nome'])));
 $usuario = mysqli_real_escape_string($conn, strtolower($_POST['usuario']));
 $senha = mysqli_real_escape_string($conn, $_POST['senha']);
+$senha = md5($senha);
 
 // Realize a verificação se o usuário tem permissão para editar o usuário com o ID fornecido
 // Você pode adicionar sua lógica de verificação aqui
 
 // Atualize os dados do usuário na tabela
-$altera_usuario = "UPDATE usuarios SET nome='$nome', usuario='$usuario', senha='$senha' WHERE id='$id_usuario'";
-$resposta = mysqli_query($conn, $altera_usuario);
+$verifica_usuario = "SELECT * FROM usuarios WHERE usuario = '$usuario'";
+$resultado_verificacao = mysqli_query($conn, $verifica_usuario);
 
-if($resposta){
-    $_SESSION['success'] = "<div class='alert alert-success alert-dismissible fade show text-center mb-0' role='alert'>
+if (mysqli_num_rows($resultado_verificacao) == 0) {
+    $token = md5($usuario . $senha);
+
+    $altera_usuario = "UPDATE usuarios SET nome='$nome', usuario='$usuario', senha='$senha' WHERE id='$id_usuario'";
+    echo $altera_usuario;
+    $resposta = mysqli_query($conn, $altera_usuario);
+
+    if ($resposta) {
+        $_SESSION['success'] = "<div class='alert alert-success alert-dismissible fade show text-center mb-0' role='alert'>
         <strong> USUÁRIO EDITADO COM SUCESSO &nbsp; <i class='far fa-smile-wink fa-2x'></i> </strong> 
         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
             <span aria-hidden='true'>&times;</span>
         </button>
     </div>";
-    header('Location: listar_usuarios.php'); // Redireciona para a página de listagem de usuários
-} else {
-    $_SESSION['error'] = "<div class='alert alert-danger alert-dismissible fade show text-center mb-0' role='alert'>
+        header('Location: edit.php'); // Redireciona para a página de listagem de usuários
+    } else {
+        $_SESSION['error'] = "<div class='alert alert-danger alert-dismissible fade show text-center mb-0' role='alert'>
         <strong> NÃO FOI POSSÍVEL EDITAR O USUÁRIO &nbsp; <i class='fas fa-grin-squint-tears fa-2x'></i> </strong> 
         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
             <span aria-hidden='true'>&times;</span>
         </button>
     </div>";
-    header('Location: listar_usuarios.php'); // Redireciona para a página de listagem de usuários
+        header('Location: edit.php'); // Redireciona para a página de listagem de usuários
+    }
 }
 ?>

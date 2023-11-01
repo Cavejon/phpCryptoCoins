@@ -33,7 +33,7 @@
         </symbol>
     </svg>
 
-    <title>Sistema de Cadastro</title>
+    <title>Crypto Coins</title>
   
 </head>
 
