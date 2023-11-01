@@ -2,7 +2,7 @@
 	$servidor = "localhost";
 	$usuario = "root";
 	//$senha = "";//AMBIENTE DE PRODUÇÃO
-	$senha = "";//AMBIENTE DE DESENVOLVIMENTO
+	$senha = "root";//AMBIENTE DE DESENVOLVIMENTO
 	$dbname = "usuarios";
 	$conn = mysqli_connect($servidor, $usuario, $senha, $dbname);
 	if(!$conn){

@@ -19,6 +19,34 @@ if (isset($_SESSION['success'])) {
     unset($_SESSION['success']);
 }
 ?>
+<style>
+    table tr th,
+    td {
+        background-color: #1E1C1C !important;
+    }
+
+    table td {
+        width: 4rem;
+    }
+
+    body::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    body::-webkit-scrollbar-track {
+        background-color: #1E1C1C;
+
+    }
+
+    body::-webkit-scrollbar-thumb {
+        background-color: #1e4fc4;
+
+        border-radius: 20px;
+
+        border: 3px solid #1E1C1C;
+
+    }
+</style>
 
 <body style="background-color: #1E1C1C;">
 
@@ -28,8 +56,7 @@ if (isset($_SESSION['success'])) {
             <div class="row">
                 <div class="col-md3">
                     <div class="p-3" style="width: 35rem; margin-top:7rem">
-                        <h2 class="text-light mt-5 " style="font-size: 2.6rem">A <span
-                                style="color: #1e4fc4;">CryptoCoins</span> sua
+                        <h2 class="text-light mt-5 " style="font-size: 2.6rem">A <span style="color: #1e4fc4;">CryptoCoins</span> sua
                             consulta em tempo real.</h2>
                         <p style="font-size:1.4rem" class="text-light mt-4">
                             A CrytoCoins é o lugar mais fácil e rapido para consultar criptomoedas. Registre-se e comece
@@ -132,13 +159,13 @@ if (isset($_SESSION['success'])) {
             <table id="grade_coins" class="table table-dark mb-4 bg-white">
                 <thead>
                     <tr>
-                        <th style="width:4rem">Id</th>
+                        <th style="width:4rem"></th>
                         <th><img src="assets/images/icons8-coin-80.png" style="width: 1rem;">
                         </th>
                         <th>Image</th>
                         <th>Name</th>
                         <th>Current Price</th>
-                        <th>last_updated</th>
+                        <th>Last Updated</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -147,97 +174,98 @@ if (isset($_SESSION['success'])) {
             </table>
         </div>
     </section>
-    <style>
-        table tr th,
-        td {
-            background-color: #1E1C1C !important;
-        }
 
-        table td {
-            width: 4rem;
-        }
-    </style>
 </body>
 <script>
-    // $.ajax({
-    //          url: "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en",
-    //          type: 'GET',
-    //          contentType: 'application/json',
-    //          crossDomain: true,
-    //          success: function (data) {
-    //              if (this.readyState == 4 && this.status == 200) {
-    //                  const data = JSON.parse(decodeURIComponent(this.responseText)).map(el => {
-    //                      return {
-    //                          ...el,
-    //                          image: `<img src="${el.image}" style="width:3rem"/>`
-    //                      }
-    //                  });
+    $.ajax({
+        url: "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en",
+        type: 'GET',
+        contentType: 'application/json',
+        crossDomain: true,
+        success: function(data) {
+            if (this.readyState == 4 && this.status == 200) {
+                const data = JSON.parse(decodeURIComponent(this.responseText)).map(el => {
+                    return {
+                        ...el,
+                        image: `<img src="${el.image}" style="width:3rem"/>`
+                    }
+                });
 
-    //                  $('#grade_coins').DataTable({
-    //                      language: {
-    //                          zeroRecords: 'Nada encontrado, desculpe!',
-    //                          infoEmpty: 'Não há registros disponíveis',
-    //                          search: 'Pesquisar',
-    //                          "paginate": {
-    //                              "first": "Primeira",
-    //                              "last": "Last",
-    //                              "next": "Próxima",
-    //                              "previous": "Anterior"
-    //                          },
-    //                      },
-    //                      "data": data,
-    //                      "columns": [
-    //                          { "data": "id" },
-    //                          { "data": "symbol" },
-    //                          { "data": "image" },
-    //                          { "data": "name" },
-    //                          { "data": "current_price" },
-    //                          { "data": "last_updated" },
-    //                      ]
-    //                  });
-    //              }
-    //          }
-    //      });
-
-    var xmlhttp = new XMLHttpRequest();
-    var url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en"
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            const data = JSON.parse(decodeURIComponent(this.responseText)).map(el => {
-                return {
-                    ...el,
-                    image: `<img src="${el.image}" style="width:3rem"/>`
-                }
-            });
-
-            $('#grade_coins').DataTable({
-                language: {
-                    zeroRecords: 'Nada encontrado, desculpe!',
-                    infoEmpty: 'Não há registros disponíveis',
-                    search: 'Pesquisar',
-                    "paginate": {
-                        "first": "Primeira",
-                        "last": "Last",
-                        "next": "Próxima",
-                        "previous": "Anterior"
+                $('#grade_coins').DataTable({
+                    language: {
+                        zeroRecords: 'Nada encontrado, desculpe!',
+                        infoEmpty: 'Não há registros disponíveis',
+                        search: 'Pesquisar',
+                        "paginate": {
+                            "first": "Primeira",
+                            "last": "Last",
+                            "next": "Próxima",
+                            "previous": "Anterior"
+                        },
                     },
-                },
-                "data": data,
-                "columns": [
-                    { "data": "id" },
-                    { "data": "symbol" },
-                    { "data": "image" },
-                    { "data": "name" },
-                    { "data": "current_price" },
-                    { "data": "last_updated" },
-                ]
-            });
+                    "data": data,
+                    "columns": [{
+                            "data": "id"
+                        },
+                        {
+                            "data": "symbol"
+                        },
+                        {
+                            "data": "image"
+                        },
+                        {
+                            "data": "name"
+                        },
+                        {
+                            "data": "current_price"
+                        },
+                        {
+                            "data": "last_updated"
+                        },
+                    ]
+                });
+            }
         }
+    });
 
-    }
+    // var xmlhttp = new XMLHttpRequest();
+    // var url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en"
+    // xmlhttp.open("GET", url, true);
+    // xmlhttp.send();
+    // xmlhttp.onreadystatechange = function () {
+    //     if (this.readyState == 4 && this.status == 200) {
+    //         const data = JSON.parse(decodeURIComponent(this.responseText)).map(el => {
+    //             return {
+    //                 ...el,
+    //                 image: `<img src="${el.image}" style="width:3rem"/>`
+    //             }
+    //         });
 
+    //         $('#grade_coins').DataTable({
+    //             language: {
+    //                 zeroRecords: 'Nada encontrado, desculpe!',
+    //                 infoEmpty: 'Não há registros disponíveis',
+    //                 search: 'Pesquisar',
+    //                 "paginate": {
+    //                     "first": "Primeira",
+    //                     "last": "Last",
+    //                     "next": "Próxima",
+    //                     "previous": "Anterior"
+    //                 },
+    //             },
+    //             "data": data,
+    //             "columns": [
+    //                 { "data": "id" },
+    //                 { "data": "symbol" },
+    //                 { "data": "image" },
+    //                 { "data": "name" },
+    //                 { "data": "current_price" },
+    //                 { "data": "last_updated" },
+    //             ]
+    //         });
+    //     }
+
+    // }
 </script>
 
 <!-- ================================== MODAL CADASTRAR CLIENTE----------------------------------------------------------------->
@@ -249,7 +277,7 @@ if (isset($_SESSION['success'])) {
 <script>
     // ================================ FUNÇÃO PARA MASCARA DE TELEFONE =============================================
     function mask(o, f) {
-        setTimeout(function () {
+        setTimeout(function() {
             var v = telefone(o.value);
             if (v != o.value) {
                 o.value = v;
@@ -274,7 +302,7 @@ if (isset($_SESSION['success'])) {
 
     // ================================ FUNÇÃO PARA MASCARA DE CELULAR =============================================
     function mask(o, f) {
-        setTimeout(function () {
+        setTimeout(function() {
             var v = celular(o.value);
             if (v != o.value) {
                 o.value = v;
@@ -298,12 +326,12 @@ if (isset($_SESSION['success'])) {
     }
 
     // ================================ FUNÇÃO PARA MASCARA DE CPF =============================================
-    $(document).ready(function () {
+    $(document).ready(function() {
         $("#cpf").mask("999.999.999-99");
     });
 
     // ================================ FUNÇÃO PARA MASCARA DE NASCIMENTO =============================================
-    $(document).ready(function () {
+    $(document).ready(function() {
         $("#nascimento").mask("99/99/9999");
     });
 
@@ -374,9 +402,9 @@ if (isset($_SESSION['success'])) {
     };
 
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
-        $('#insert_form').on('submit', function (event) {
+        $('#insert_form').on('submit', function(event) {
             event.preventDefault(); //EVITA O SUBMIT DO FORM
 
             var nome = $('#nome'); // PEGA O CAMPO CLIENTE DO FORM
@@ -423,7 +451,7 @@ if (isset($_SESSION['success'])) {
             } else {
 
                 var dados = $("#insert_form").serialize();
-                $.post("processa_cad_clientes.php", dados, function (retorna) {
+                $.post("processa_cad_clientes.php", dados, function(retorna) {
                     if (retorna) {
                         //Limpar os campo
                         $('#insert_form')[0].reset();
@@ -432,7 +460,7 @@ if (isset($_SESSION['success'])) {
                         $('#cadCliente').modal('hide');
                         $('#sucessModal').modal('show');
 
-                        setInterval(function () {
+                        setInterval(function() {
                             var redirecionar = "listar_clientes.php";
                             $(window.document.location).attr('href', redirecionar);
 
@@ -541,13 +569,11 @@ if (isset($_SESSION['success'])) {
                         </div>
                         <div class="col-md-5 col-sm-12">
                             <label for="recipient-complemento" class="col-form-label">Complemento</label>
-                            <input type="text" name="complemento" id="complemento" maxlength="50"
-                                class="form-control -10">
+                            <input type="text" name="complemento" id="complemento" maxlength="50" class="form-control -10">
                         </div>
                         <div class="col-md-2 col-sm-12">
                             <label for="recipient-cep" class="col-form-label">Cep</label>
-                            <input type="text" name="cep" id="cep" maxlength="50"
-                                class="form-control -10 border border-warning" onblur="pesquisacep(this.value);">
+                            <input type="text" name="cep" id="cep" maxlength="50" class="form-control -10 border border-warning" onblur="pesquisacep(this.value);">
                         </div>
 
                     </div>
@@ -562,14 +588,11 @@ if (isset($_SESSION['success'])) {
                         </div>
                         <div class="col-md-3 col-sm-12">
                             <label for="recipient-telefone" class="col-form-label">Telefone</label>
-                            <input type="text" name="telefone" id="telefone" onkeypress="mask(this, telefone);"
-                                onblur="mask(this, telefone);" class="form-control -10">
+                            <input type="text" name="telefone" id="telefone" onkeypress="mask(this, telefone);" onblur="mask(this, telefone);" class="form-control -10">
                         </div>
                         <div class="col-md-3 col-sm-12">
                             <label for="recipient-celular" class="col-form-label">Celular</label>
-                            <input type="text" name="celular" id="celular" maxlength="50"
-                                onkeypress="mask(this, celular);" onblur="mask(this, celular);"
-                                class="form-control -10">
+                            <input type="text" name="celular" id="celular" maxlength="50" onkeypress="mask(this, celular);" onblur="mask(this, celular);" class="form-control -10">
                         </div>
 
                     </div>
@@ -590,19 +613,16 @@ if (isset($_SESSION['success'])) {
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
                             <label for="recipient-operador" class="col-form-label cli">Operador</label>
-                            <input type="text" name="operador" id="operador" maxlength="50" class="form-control"
-                                disabled value="<?php echo $_SESSION['usuarioNome'] ?>">
+                            <input type="text" name="operador" id="operador" maxlength="50" class="form-control" disabled value="<?php echo $_SESSION['usuarioNome'] ?>">
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <label for="recipient-dataCadastro" class="col-form-label">Data do cadastro</label>
-                            <input type="text" class="form-control" value="<?php echo date('d/m/Y - H:i:s') ?>"
-                                disabled>
+                            <input type="text" class="form-control" value="<?php echo date('d/m/Y - H:i:s') ?>" disabled>
                         </div>
                         <div class="col-md-4 col-sm-12">
 
                             <label for="recipient-situacao" class="col-form-label">Situação</label>
-                            <select class="form-control form-select-lg mb-5 select2" name="situacao" id="situacao"
-                                aria-label=".form-select-lg example">
+                            <select class="form-control form-select-lg mb-5 select2" name="situacao" id="situacao" aria-label=".form-select-lg example">
                                 <option value="Pendente">Pendente</option>
                                 <option value="Ativo">Ativo</option>
                                 <option value="Inativo">Inativo</option>
@@ -632,8 +652,7 @@ if (isset($_SESSION['success'])) {
 
 
 <!-- -----------------------------------MODAL VISUALIZAR CLIENTE----------------------------------------------------------------->
-<div class="modal fade" id="visulaizarCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="visulaizarCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -671,18 +690,15 @@ if (isset($_SESSION['success'])) {
                     <div class="row">
                         <div class="col-md-5 col-sm-12">
                             <label for="recipient-bairro" class="col-form-label">Bairro</label>
-                            <input type="text" name="bairro" id="recipient-bairro" maxlength="50" class="form-control"
-                                disabled>
+                            <input type="text" name="bairro" id="recipient-bairro" maxlength="50" class="form-control" disabled>
                         </div>
                         <div class="col-md-5 col-sm-12">
                             <label for="recipient-complemento" class="col-form-label">Complemento</label>
-                            <input type="text" name="complemento" id="recipient-complemento" maxlength="50"
-                                class="form-control -10" disabled>
+                            <input type="text" name="complemento" id="recipient-complemento" maxlength="50" class="form-control -10" disabled>
                         </div>
                         <div class="col-md-2 col-sm-12">
                             <label for="recipient-cep" class="col-form-label">Cep</label>
-                            <input type="text" name="cep" id="recipient-cep" maxlength="50" class="form-control"
-                                disabled>
+                            <input type="text" name="cep" id="recipient-cep" maxlength="50" class="form-control" disabled>
                         </div>
 
                     </div>
@@ -690,50 +706,40 @@ if (isset($_SESSION['success'])) {
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
                             <label for="recipient-cidade" class="col-form-label">Cidade</label>
-                            <input type="text" name="cidade" id="recipient-cidade" maxlength="50" class="form-control"
-                                disabled>
+                            <input type="text" name="cidade" id="recipient-cidade" maxlength="50" class="form-control" disabled>
                         </div>
                         <div class="col-md-2 col-sm-12">
                             <label for="recipient-uf" class="col-form-label">UF</label>
-                            <input type="text" name="uf" id="recipient-uf" maxlength="50" class="form-control -10"
-                                disabled>
+                            <input type="text" name="uf" id="recipient-uf" maxlength="50" class="form-control -10" disabled>
                         </div>
                         <div class="col-md-3 col-sm-12">
                             <label for="recipient-telefone" class="col-form-label">Telefone</label>
-                            <input type="text" name="telefone" id="recipient-telefone"
-                                onkeypress="mask(this, telefone);" onblur="mask(this, telefone);"
-                                class="form-control -10" disabled>
+                            <input type="text" name="telefone" id="recipient-telefone" onkeypress="mask(this, telefone);" onblur="mask(this, telefone);" class="form-control -10" disabled>
                         </div>
                         <div class="col-md-3 col-sm-12">
                             <label for="recipient-celular" class="col-form-label">Celular</label>
-                            <input type="text" name="celular" id="recipient-celular" maxlength="50"
-                                onkeypress="mask(this, celular);" onblur="mask(this, celular);" class="form-control -10"
-                                disabled>
+                            <input type="text" name="celular" id="recipient-celular" maxlength="50" onkeypress="mask(this, celular);" onblur="mask(this, celular);" class="form-control -10" disabled>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
                             <label for="recipient-cpf" class="col-form-label">CPF</label>
-                            <input type="text" name="cpf" id="recipient-cpf" maxlength="50" class="form-control"
-                                disabled>
+                            <input type="text" name="cpf" id="recipient-cpf" maxlength="50" class="form-control" disabled>
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <label for="recipient-rg" class="col-form-label">RG</label>
-                            <input type="text" name="rg" id="recipient-rg" maxlength="50" class="form-control -10"
-                                disabled>
+                            <input type="text" name="rg" id="recipient-rg" maxlength="50" class="form-control -10" disabled>
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <label for="recipient-nascimento" class="col-form-label">Nascimento</label>
-                            <input type="text" name="nascimento" id="recipient-nascimento" class="form-control -10"
-                                disabled>
+                            <input type="text" name="nascimento" id="recipient-nascimento" class="form-control -10" disabled>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
                             <label for="recipient-operador" class="col-form-label cli">Cadastrado por</label>
-                            <input type="text" name="operador" id="recipient-operador" maxlength="50"
-                                class="form-control" disabled>
+                            <input type="text" name="operador" id="recipient-operador" maxlength="50" class="form-control" disabled>
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <label for="recipient-dataCadastro" class="col-form-label">Data do cadastro</label>
@@ -742,8 +748,7 @@ if (isset($_SESSION['success'])) {
                         <div class="col-md-4 col-sm-12">
 
                             <label for="recipient-situacao" class="col-form-label">Situação</label>
-                            <select class="form-control form-select-lg mb-5 select2" name="situacao"
-                                id="recipient-situacao" aria-label=".form-select-lg example" disabled>
+                            <select class="form-control form-select-lg mb-5 select2" name="situacao" id="recipient-situacao" aria-label=".form-select-lg example" disabled>
                                 <option value="Pendente">Pendente</option>
                                 <option value="Ativo">Ativo</option>
                                 <option value="Inativo">Inativo</option>
@@ -756,13 +761,11 @@ if (isset($_SESSION['success'])) {
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
                             <label for="recipient-alterado_por" class="col-form-label cli">Alterado por</label>
-                            <input type="text" name="alterado_por" id="recipient-alterado_por" maxlength="50"
-                                class="form-control" disabled>
+                            <input type="text" name="alterado_por" id="recipient-alterado_por" maxlength="50" class="form-control" disabled>
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <label for="recipientultima_alteracao" class="col-form-label">Última Alteração</label>
-                            <input type="text" class="form-control" name="ultima_alteracao"
-                                id="recipientultima_alteracao" disabled>
+                            <input type="text" class="form-control" name="ultima_alteracao" id="recipientultima_alteracao" disabled>
                         </div>
 
                     </div>
@@ -779,7 +782,7 @@ if (isset($_SESSION['success'])) {
 </div>
 <!-- -----------------------------------SCRIPT MODAL VISUALIZAR CLIENTE----------------------------------------------------------------->
 <script type="text/javascript">
-    $('#visulaizarCliente').on('show.bs.modal', function (event) {
+    $('#visulaizarCliente').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget) // Botão que acionou o modal
         var recipient = button.data('whatever')
         var recipientnome = button.data('whatevernome')
@@ -831,8 +834,7 @@ if (isset($_SESSION['success'])) {
 </script>
 
 <!-- -----------------------------------MODAL EDITAR CLIENTE----------------------------------------------------------------->
-<div class="modal fade" id="editarCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="editarCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -874,8 +876,7 @@ if (isset($_SESSION['success'])) {
                         </div>
                         <div class="col-md-5 col-sm-12">
                             <label for="recipient-complemento" class="col-form-label">Complemento</label>
-                            <input type="text" name="complemento" id="recipient-complemento" maxlength="50"
-                                class="form-control -10">
+                            <input type="text" name="complemento" id="recipient-complemento" maxlength="50" class="form-control -10">
                         </div>
                         <div class="col-md-2 col-sm-12">
                             <label for="recipient-cep" class="col-form-label">Cep</label>
@@ -895,15 +896,11 @@ if (isset($_SESSION['success'])) {
                         </div>
                         <div class="col-md-3 col-sm-12">
                             <label for="recipient-telefone" class="col-form-label">Telefone</label>
-                            <input type="text" name="telefone" id="recipient-telefone"
-                                onkeypress="mask(this, telefone);" onblur="mask(this, telefone);"
-                                class="form-control -10">
+                            <input type="text" name="telefone" id="recipient-telefone" onkeypress="mask(this, telefone);" onblur="mask(this, telefone);" class="form-control -10">
                         </div>
                         <div class="col-md-3 col-sm-12">
                             <label for="recipient-celular" class="col-form-label">Celular</label>
-                            <input type="text" name="celular" id="recipient-celular" maxlength="50"
-                                onkeypress="mask(this, celular);" onblur="mask(this, celular);"
-                                class="form-control -10">
+                            <input type="text" name="celular" id="recipient-celular" maxlength="50" onkeypress="mask(this, celular);" onblur="mask(this, celular);" class="form-control -10">
                         </div>
                     </div>
 
@@ -924,8 +921,7 @@ if (isset($_SESSION['success'])) {
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
                             <label for="recipient-operador" class="col-form-label cli">Cadastrado por</label>
-                            <input type="text" name="operador" id="recipient-operador" maxlength="50"
-                                class="form-control" disabled>
+                            <input type="text" name="operador" id="recipient-operador" maxlength="50" class="form-control" disabled>
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <label for="recipient-dataCadastro" class="col-form-label">Data do cadastro</label>
@@ -934,8 +930,7 @@ if (isset($_SESSION['success'])) {
                         <div class="col-md-4 col-sm-12">
 
                             <label for="recipient-situacao" class="col-form-label">Situação</label>
-                            <select class="form-control form-select-lg mb-5 select2" name="situacao"
-                                id="recipient-situacao" aria-label=".form-select-lg example">
+                            <select class="form-control form-select-lg mb-5 select2" name="situacao" id="recipient-situacao" aria-label=".form-select-lg example">
                                 <option value="Pendente">Pendente</option>
                                 <option value="Ativo">Ativo</option>
                                 <option value="Inativo">Inativo</option>
@@ -950,13 +945,11 @@ if (isset($_SESSION['success'])) {
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
                             <label for="recipient-operador" class="col-form-label cli">Alterado por</label>
-                            <input type="text" name="alterado_por" id="recipient-alterado_por" maxlength="50"
-                                class="form-control" disabled value="<?php echo $_SESSION['usuarioNome'] ?>">
+                            <input type="text" name="alterado_por" id="recipient-alterado_por" maxlength="50" class="form-control" disabled value="<?php echo $_SESSION['usuarioNome'] ?>">
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <label for="recipient-dataCadastro" class="col-form-label">Última Alteração</label>
-                            <input type="text" class="form-control" name="ultima_alteracao"
-                                id="recipientultima_alteracao" value="<?php echo date('d/m/Y - H:i:s') ?>" disabled>
+                            <input type="text" class="form-control" name="ultima_alteracao" id="recipientultima_alteracao" value="<?php echo date('d/m/Y - H:i:s') ?>" disabled>
                         </div>
 
                     </div>
@@ -977,7 +970,7 @@ if (isset($_SESSION['success'])) {
 </div>
 <!-- -----------------------------------SCRIPT MODAL EDITAR CLIENTE----------------------------------------------------------------->
 <script type="text/javascript">
-    $('#editarCliente').on('show.bs.modal', function (event) {
+    $('#editarCliente').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget) // Botão que acionou o modal
         var recipient = button.data('whatever')
         var recipientnome = button.data('whatevernome')
@@ -1030,10 +1023,10 @@ if (isset($_SESSION['success'])) {
 
 
 <script>
-    $(document).ready(function () {
-        $(function () {
+    $(document).ready(function() {
+        $(function() {
             //Pesquisar os cursos sem refresh na página
-            $("#pesquisa_cliente").keyup(function () {
+            $("#pesquisa_cliente").keyup(function() {
 
                 var pesquisa_cliente = $(this).val();
 
@@ -1042,7 +1035,7 @@ if (isset($_SESSION['success'])) {
                     var dados = {
                         palavra: pesquisa_cliente
                     }
-                    $.post('busca_clientes.php', dados, function (retorna) {
+                    $.post('busca_clientes.php', dados, function(retorna) {
                         //Mostra dentro da ul os resultado obtidos
                         $(".resultado_cliente").html(retorna);
                     });

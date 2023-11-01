@@ -14,9 +14,9 @@
 
 </style>
 
-<body style="background-color: #244772;">
+<body style="background-color: #244772; overflow: hidden;">
   <main>
-    <div class="container teste border mt-3rounded p-5 text-dark " style="width: 60rem; display: flex !important; margin-top: 7rem !important; 
+    <div class="container teste border mt-3 rounded p-5 text-dark " style="width: 60rem; display: flex !important; margin-top: 7rem !important; 
             background-color: #fff; border-radius: 1rem 0 0 1rem">
       <figure>
         <img src="assets/images/eth-3738542.png" class="card-img-top img-fluid img-thumbnail container-fluid"
@@ -24,37 +24,30 @@
         <figcaption class="text-center h3" style="font-weight: 350; color: #0e4166 o !important;"></figcaption>
       </figure>
 
-      <div class="card-body" style="margin-top: 1rem;">
-        <h3 class="card-title text-center mb-4 text-uppercase h6 ">Coloque seus dados para registro</h3>
+      <div class="card-body">
+        <h3 class="card-title text-center mb-4 text-uppercase h6 ">Insert your data for register</h3>
 
         <form class="needs-validation container" novalidate method="POST" action="validaCreate.php">
         <input type="hidden" name="type" value="register">
           <div class="form-group mb-3">
-            <label for="email ">Full name: </label>
-            <input type="text" name="nome" class="form-control text-center" aria-describedby="emailHelp"
-            placeholder="Full name...">
+            <label for="email ">Name: </label>
+            <input type="text" name="nome" class="form-control text-center"
+            placeholder="Name">
           </div>
           <div class="form-group mb-3">
             <label for="password">UserName: </label>
-            <input type="text" name="usuario" class="form-control text-center" placeholder="Username...">
+            <input type="text" name="usuario" class="form-control text-center" placeholder="Username" required>
           </div>
           <div class="form-group mb-3">
             <label for="password">Password: </label>
-            <input type="password" name="senha" class="form-control text-center" placeholder="Password...">
+            <input type="password" name="senha" class="form-control text-center" placeholder="Password">
           </div>
           <div class="form-check mt-3 ">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label " for="exampleCheck1">Lembre-se de mim</label>
+            <label class="form-check-label " for="exampleCheck1">Remember me</label>
           </div>
-          <input type="submit" value="Entrar" class="btn btn-primary mt-3 container"></input>
-          <button type="submit" name="submit" class="btn btn-link container" data-mdb-ripple-color="dark"><a
-              href="<?php echo BASE_URL; ?>">Voltar ao menu</a> </button>
+          <input type="submit" value="Submit" class="btn btn-primary mt-3 container"></input>
         </form>
-        <?php if (!empty($msg))
-          ; ?>
-        <h2>
-          <?php echo $msg; ?>
-        </h2>
       </div>
     </div>
 

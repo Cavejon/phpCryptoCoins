@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="#coins">Coins</a>
+                        <a class="nav-link" href="home.php">Coins</a>
                     </li>
                     <?php if (!isset($_SESSION['usuarioNome'])) { ?>
                         <li class="nav-item">

@@ -10,7 +10,7 @@ if (!isset($_SESSION['usuarioNome'])) {
 }
 
 $id_usuario = mysqli_real_escape_string($conn, $_POST['id']);
-$nome = mysqli_real_escape_string($conn, ucwords(strtolower($_POST['nome']));
+$nome = mysqli_real_escape_string($conn, ucwords(strtolower($_POST['nome'])));
 $usuario = mysqli_real_escape_string($conn, strtolower($_POST['usuario']));
 $senha = mysqli_real_escape_string($conn, $_POST['senha']);
 

@@ -53,11 +53,7 @@ include('config/conexao.php');
           </div>
           <input type="submit" value="Submit" class="btn btn-primary mt-3 container"></input>
         </form>
-        <?php if (!empty($msg))
-          ; ?>
-        <h2>
-          <?php echo $msg; ?>
-        </h2>
+        
       </div>
     </div>
 

@@ -6,7 +6,6 @@ include('config/conexao.php');
 include_once("config/seguranca.php");
 seguranca_adm();
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
