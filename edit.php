@@ -49,6 +49,8 @@ if (isset($_SESSION['success'])) {
             <!-- left column -->
             <div class="col-md-3">
                 <div class="text-center">
+                <form class="needs-validation form-horizontal text-light" enctype="multipart/form-data" role="form" novalidate method="POST"
+                    action="validaEdit.php">
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png"
                         class="avatar img-circle img-thumbnail" alt="avatar">
                     <h6>Upload a different photo...</h6>
@@ -66,8 +68,7 @@ if (isset($_SESSION['success'])) {
         </div> --> 
                 <h3 class="text-light">User info</h3>
 
-                <form class="needs-validation form-horizontal text-light" role="form" novalidate method="POST"
-                    action="validaEdit.php">
+
                     <input type="hidden" name="id" value="<?php echo $_SESSION['id']; ?>">
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Full name:</label>

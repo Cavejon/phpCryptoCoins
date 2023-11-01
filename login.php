@@ -1,9 +1,7 @@
 <?php
 session_start();
 include('config/conexao.php');
-
 ?>
-
 <!doctype html>
 <html lang="pt-BR">
 
