@@ -66,12 +66,12 @@ if (isset($_SESSION['success'])) {
                 <div class="col-md3">
                     <div class="p-3" style="width: 35rem; margin-top:7rem">
                         <h2 class="text-light mt-5 " style="font-size: 2.6rem">A <span
-                                style="color: #1e4fc4;">CryptoCoins</span> sua
-                            consulta em tempo real.</h2>
+                                style="color: #1e4fc4;">CryptoCoins</span> yours real-time consultation.</h2>
                         <p style="font-size:1.4rem" class="text-light mt-4">
-                            A CrytoCoins é o lugar mais fácil e rapido para consultar criptomoedas. Registre-se e comece
-                            hoje mesmo a
-                            conferir o mercado.
+                            CrytoCoins is the easiest and fastest place to check cryptocurrencies. Register and get
+                            started
+                            today the
+                            check the market.
                         </p>
                     </div>
                 </div>
@@ -88,45 +88,46 @@ if (isset($_SESSION['success'])) {
     <section class="hall container-fluid d-flex pt-5 " id="about">
         <div class="container mt-5" style="width:60rem;">
             <div class="text-light text-center ">
-                <h1 class="font-weight-normal mb-3  text-uppercase ">Sobre CryptoCoins</h1>
+                <h1 class="font-weight-normal mb-3  text-uppercase ">About CryptoCoins</h1>
                 <p class="font-weight-normal mb-3 ">
-                    A página "CryptoCoins" é um projeto acadêmico desenvolvido como parte da graduação em Análise e
-                    Desenvolvimento de Sistemas. Seu objetivo principal é oferecer informações sobre criptomoedas, como
-                    Bitcoin, Ethereum e muitas outras, bem como acompanhar suas cotações em tempo real. Para alcançar
-                    esse objetivo, várias tecnologias foram empregadas no desenvolvimento:
+                    The "CryptoCoins" page is an academic project developed as part of the degree in Analysis and
+                    Systems development. Its main objective is to offer information about cryptocurrencies, such as
+                    Bitcoin, Ethereum and many others, as well as monitoring their quotes in real time. To reach
+                    To achieve this objective, several technologies were used in the development:
                 </p>
                 <p>
-                    HTML: O HTML é a espinha dorsal da página, sendo usado para criar a estrutura e o conteúdo da
-                    plataforma, desde cabeçalhos e parágrafos até formulários de pesquisa e tabelas de dados.
+                    HTML: HTML is the backbone of the page, being used to create the structure and content of the page.
+                    platform, from headers and paragraphs to search forms and data tables.
                 </p>
                 <p>
-                    Bootstrap: O framework Bootstrap foi utilizado para o design e a aparência da página. Ele fornece
-                    componentes e estilos pré-fabricados que facilitam a criação de um layout responsivo e atraente,
-                    garantindo que a página seja acessível em dispositivos de diferentes tamanhos.
+                    Bootstrap: The Bootstrap framework was used for the design and appearance of the page. He provides
+                    pre-made components and styles that make it easy to create a responsive and attractive layout,
+                    ensuring that the page is accessible on devices of different sizes.
                 </p>
                 <p>
-                    MySQL: O sistema de gerenciamento de banco de dados MySQL é usado para armazenar e gerenciar
-                    informações sobre as criptomoedas, como histórico de preços, informações de mercado e outras
-                    estatísticas relevantes.
+                    MySQL: MySQL database management system is used to store and manage
+                    information about cryptocurrencies, such as price history, market information and others
+                    relevant statistics.
                 </p>
                 <p>
-                    PHP: A linguagem de programação PHP é utilizada para criar a lógica de back-end da página. Ela
-                    permite que os dados sejam recuperados do banco de dados, processados e apresentados aos usuários de
-                    forma dinâmica. Além disso, o PHP também pode ser usado para interagir com APIs de terceiros, como
-                    aquelas que fornecem dados em tempo real sobre criptomoedas.
+                    PHP: The PHP programming language is used to create the back-end logic of the page. She
+                    allows data to be retrieved from the database, processed and presented to users of
+                    dynamic way. Additionally, PHP can also be used to interact with third-party APIs such as
+                    those that provide real-time data on cryptocurrencies.
                 </p>
                 <p>
-                    jQuery: A biblioteca JavaScript jQuery é empregada para tornar a página mais interativa. Ela pode
-                    ser usada para criar recursos como gráficos dinâmicos, atualizações em tempo real das informações de
-                    mercado e melhorar a experiência do usuário.
+                    jQuery: The jQuery JavaScript library is employed to make the page more interactive. She can
+                    be used to create features such as dynamic charts, real-time updates of information
+                    market and improve user experience.
                 </p>
                 <p>
-                    No geral, a página "CryptoCoins" visa fornecer aos usuários uma plataforma informativa e prática
-                    para acompanhar as últimas notícias e cotações das criptomoedas, com uma interface amigável e
-                    responsiva, graças às tecnologias HTML, Bootstrap, MySQL, PHP e jQuery.
+                    Overall, the "CryptoCoins" page aims to provide users with an informative and practical platform
+                    to follow the latest news and cryptocurrency quotes, with a user-friendly interface and
+                    responsive, thanks to HTML, Bootstrap, MySQL, PHP and jQuery technologies.
                 </p>
 
-                <button class="btn btn-Sm" style="background-color: #1e4fc4; color:#fff;">Conheça meu perfil!</button>
+                <button class="btn btn-Sm" style="background-color: #1e4fc4; color:#fff;">
+                    Check out my profile!</button>
             </div>
     </section>
 
@@ -261,15 +262,15 @@ if (isset($_SESSION['success'])) {
 
                 if (coinName === "Bitcoin") {
                     document.getElementById("bitcoin-name").textContent = coinName;
-                    document.getElementById("bitcoin-price").textContent = `R$ ${coinData.current_price.toFixed(2)}`;
+                    document.getElementById("bitcoin-price").textContent = `Current value R$ ${coinData.current_price.toFixed(2)}`;
                     document.getElementById("bitcoin-image").src = coinData.image;
                 } else if (coinName === "Ethereum") {
                     document.getElementById("etherium-name").textContent = coinName;
-                    document.getElementById("etherium-price").textContent = `R$ ${coinData.current_price.toFixed(2)}`;
+                    document.getElementById("etherium-price").textContent = `Current value R$ ${coinData.current_price.toFixed(2)}`;
                     document.getElementById("etherium-image").src = coinData.image;
                 } else if (coinName === "Tether") {
                     document.getElementById("tether-name").textContent = coinName;
-                    document.getElementById("tether-price").textContent = `R$ ${coinData.current_price.toFixed(2)}`;
+                    document.getElementById("tether-price").textContent = `Current value R$ ${coinData.current_price.toFixed(2)}`;
                     document.getElementById("tether-image").src = coinData.image;
                 }
             }
