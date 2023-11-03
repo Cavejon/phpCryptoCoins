@@ -2,24 +2,15 @@
 session_start();
 include('config/conexao.php');
 ?>
-<!doctype html>
-<html lang="pt-BR">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="assets/css/login.css">
-  <title>Login - CryptoCoins </title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" 
-  integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-  <link href="https://getbootstrap.com/docs/5.1/examples/sign-in/" rel="stylesheet" 
-  integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
 
 <body style="background-color: #244772; overflow: hidden;">
   <main>
-  <div class="container teste border mt-3rounded p-5 text-dark " style="width: 60rem; display: flex !important; margin-top: 7rem !important; 
+    <div class="container teste border mt-3rounded p-5 text-dark " style="width: 60rem; display: flex !important; margin-top: 7rem !important; 
             background-color: #fff; border-radius: 1rem 0 0 1rem">
       <figure>
         <img src="assets/images/eth-3738542.png" class="card-img-top img-fluid img-thumbnail container-fluid"
@@ -29,27 +20,33 @@ include('config/conexao.php');
 
       <div class="card-body" style="margin-top: 1rem;">
         <h3 class="card-title text-center mb-4 text-uppercase h6 ">Insert yours informations for login</h3>
-  <form class="needs-validation container" novalidate method="POST" action="valida.php">
+        <form class="needs-validation container" method="POST" action="valida.php">
 
           <div class="form-group mb-3">
             <label for="usuario"> </label>
-            <input type="text"  id="floatingInput" name="usuario" class="form-control text-center" placeholder="Insert your User...">
-			<div class="invalid-feedback">
-			  Informe o Usuário.
-			</div>
+            <input type="text" id="floatingInput" name="usuario" class="form-control text-center"
+              placeholder="Insert your User...">
+            <div class="invalid-feedback">
+              Informe o Usuário.
+            </div>
           </div>
+
           <div class="form-group mb-3">
             <label for="senha"> </label>
-            <input type="password" id="floatingPassword" name="senha" class="form-control text-center" placeholder="Insert your Password...">
-			<div class="invalid-feedback">
-			Informe a Senha.
-        </div>
+            <input type="password" id="floatingPassword" name="senha" class="form-control text-center"
+              placeholder="Insert your Password...">
+            <div class="invalid-feedback">
+              Informe a Senha.
+            </div>
           </div>
+
           <div class="form-check mt-3 ">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label " for="exampleCheck1">Lembre-se de mim</label>
           </div>
+
           <input type="submit" value="Submit" class="btn btn-primary mt-3 container"></input>
+          <span>Do you don't have account? <a href="register.php">Register Here</a></span>
         </form>
         
       </div>
@@ -90,20 +87,19 @@ include('config/conexao.php');
       </g>
     </svg>
   </main>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" 
-  integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+    crossorigin="anonymous"></script>
 </body>
 
-</html>
-
 <script>
- // SCRIPT DE VALIDAÇÃO DO PROPRIO BOOTSTRAP
-  (function() {
+  // SCRIPT DE VALIDAÇÃO DO PROPRIO BOOTSTRAP
+  (function () {
     'use strict'
     var forms = document.querySelectorAll('.needs-validation')
     Array.prototype.slice.call(forms)
-      .forEach(function(form) {
-        form.addEventListener('submit', function(event) {
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
           if (!form.checkValidity()) {
             event.preventDefault()
             event.stopPropagation()

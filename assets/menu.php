@@ -1,68 +1,77 @@
-<nav class="navbar navbar-dark navbar-expand-lg">
-    <div class="container-fluid ">
-        <a class="navbar-brand" href="#">CryptoCoins <img src="" alt=""></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapseDrop">
+<?php
+include_once('cabecalho.php');
+?>
+
+<style>
+    a {
+        font-size: 14px;
+        color: #fff;
+        font-weight: 200;
+    }
+
+    .superNav {
+        font-size: 13px;
+    }
+
+    .form-control {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    @media screen and (max-width:540px) {
+        .centerOnMobile {
+            text-align: center
+        }
+    }
+</style>
+
+<!-- <div class="superNav border-bottom py-2 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 centerOnMobile">
+                <select class="me-3 border-0 bg-light">
+                    <option value="en-us">EN-US</option>
+                </select>
+                <span
+                    class="d-none d-lg-inline-block d-md-inline-block d-sm-inline-block d-xs-none me-3"><strong>info@somedomain.com</strong></span>
+                <span class="me-3"><i class="fa-solid fa-phone me-1 text-warning"></i>
+                    <strong>1-800-123-1234</strong></span>
+            </div>
+            <div
+                class="col-lg-6 col-md-6 col-sm-12 col-xs-12 d-none d-lg-block d-md-block-d-sm-block d-xs-none text-end">
+                <span class="me-3"><i class="fa-solid fa-truck text-muted me-1"></i><a class="text-muted"
+                        href="#">Shipping</a></span>
+                <span class="me-3"><i class="fa-solid fa-file  text-muted me-2"></i><a class="text-muted"
+                        href="#">Policy</a></span>
+            </div>
+        </div>
+    </div>
+</div> -->
+<nav class="navbar navbar-expand-lg sticky-top p-3 shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="home.php"><i class="fa-solid fa-shop me-2"></i> <strong>Crypto Coins</strong></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarCollapseDrop">
-            <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Descubra</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="modal" data-target="#exampleModal">Contact</a>
-                </li>
-                <!-- Modal -->
-                <div class="modal fade " id="exampleModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content bg-dark text-light">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Contact</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body ">
-                                <ul>
-                                    <li>Linkedin</li>
-                                    <li>Linkedin</li>
-                                    <li>Linkedin</li>
-                                </ul>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary btn-block"
-                                    data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <li class="nav-item">
-                    <a class="nav-link" href="#coins">Coins</a>
-                </li>
-                <?php if (!isset($_SESSION['usuarioNome'])) { ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="register">Registre-se</a>
-                    </li>
-                <?php } else { ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="edit.php">Account</a>
-                    </li>
-                <?php } ?>
 
-                <li class="nav-item mr-2">
-                    <a class="nav-link" href="sair.php" title="SAIR DO SISTEMA">
-                        To go out&nbsp;
-                        <i class="fas fa-sign-out-alt text text-danger"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <ul class="navbar-nav ms-auto ">
+            <li class="nav-item">
+                <a class="nav-link mx-2 text-uppercase active" aria-current="page" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mx-2 text-uppercase" href="#grade_top_coins">Top Coins</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mx-2 text-uppercase" href="#grade_coins">Catalog</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ms-auto ">
+            <li class="nav-item">
+                <a class="nav-link mx-2 text-uppercase" href="edit.php"><i class="fa-solid fa-circle-user me-1"></i>
+                    Account</a>
+            </li>
+        </ul>
+    </div>
     </div>
 </nav>

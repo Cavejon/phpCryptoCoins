@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
+--tenho que melhorar
 -- Banco de dados: `usuarios`
 
 DROP TABLE IF EXISTS `usuarios`;
@@ -30,6 +30,11 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
+
+INSERT INTO `usuarios` (`id`, `nome`, `usuario`, `senha`, `token`) VALUES
+(1, 'Administrador do sistema', 'admin', '202cb962ac59075b964b07152d234b70', 'e0dd669bdfe0821b8083fe92b0689426'),
+(5, 'Pedro Lucas Cavejon', 'cavejon', '202cb962ac59075b964b07152d234b70', '74279ec3066c02d25fd213654c059a23');
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

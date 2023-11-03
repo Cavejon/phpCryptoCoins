@@ -20,18 +20,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['type']) && $_POST['typ
         $resultado_insercao = mysqli_query($conn, $inserir_usuario);
 
         if ($resultado_insercao) {
-            $_SESSION['registroSucesso'] = "Registro realizado com sucesso! Faça o login.";
-            header("Location: login.php");
+            $_SESSION['success'] = "<div class='alert alert-success alert-dismissible fade show text-center mb-0' role='alert'>
+            <strong> USUÁRIO CRIADO COM SUCESSO &nbsp; <i class='far fa-smile-wink fa-2x'></i> </strong> 
+            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span>
+            </button>
+        </div>";
+            header('Location: login.php'); // Redireciona para a página de listagem de usuários
         } else {
-            $_SESSION['registroErro'] = "Erro no registro. Por favor, tente novamente.";
-            header("Location: registro.php");
+            $_SESSION['error'] = "<div class='alert alert-danger alert-dismissible fade show text-center mb-0' role='alert'>
+            <strong> NÃO FOI POSSÍVEL CRIAR O USUÁRIO &nbsp; <i class='fas fa-grin-squint-tears fa-2x'></i> </strong> 
+            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span>
+            </button>
+        </div>";
+            header('Location: register.php'); // Redireciona para a página de listagem de usuários
         }
-    } else {
-        $_SESSION['registroErro'] = "Usuário já existe. Escolha outro nome de usuário.";
-        header("Location: registro.php");
     }
-} else {
-    $_SESSION['loginErro'] = "Usuário ou senha inválido";
-    header("Location: login.php");
 }
 ?>

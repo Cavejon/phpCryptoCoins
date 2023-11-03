@@ -111,6 +111,8 @@ if (isset($_SESSION['success'])) {
                     </div> -->
                     <button type="submit" name="submit" value="submit" class="btn btn-outline-secondary mx-2"
                         style="width:20rem;">Edit info</button>
+                        <button type="submit" name="submit" value="submit" class="btn btn-outline-secondary mx-2"
+                        style="width:20rem;"><a href="delete.php">Delete account</button></a>
                 </form>
             </div>
         </div>

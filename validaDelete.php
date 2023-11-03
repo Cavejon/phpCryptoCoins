@@ -21,7 +21,7 @@ if($resposta){
                                 </button>
                                 
                         </div>";
-    header('Location: listar_clientes.php');
+    header('Location: home.php');
 }else{
 
 
@@ -33,7 +33,7 @@ if($resposta){
                                 </button>
                                 
                             </div>";
-     header('Location: listar_clientes.php');
+     header('Location: home.php');
     
 }
 include_once('assets/rodape.php');

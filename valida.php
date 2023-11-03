@@ -21,6 +21,23 @@ if ((isset($_POST['usuario'])) && (isset($_POST['senha']))) {
         $_SESSION['usuarioLogin'] = $resultado['usuario'];
         $_SESSION['usuarioSenha'] = $resultado['senha'];
         $_SESSION['id'] = $resultado['id']; 
+        
+        header("Location: home.php");
+
+    } else if ($resultado) {
+
+        $_SESSION['usuarioToken'] = $token;
+        $_SESSION['usuarioNome'] = $resultado['nome'];
+        $_SESSION['usuarioLogin'] = $resultado['usuario'];
+        $_SESSION['usuarioSenha'] = $resultado['senha'];
+        $_SESSION['id'] = $resultado['id']; 
+
+        $usuario = $resultado['usuario'];
+        $senha = $resultado['senha'];
+
+        $inserir_token = ("UPDATE usuarios SET token='$token' WHERE usuario = '$usuario' && senha = '$senha'");
+        $resultado_token = mysqli_query($conn, $inserir_token);
+
         header("Location: home.php");
 
     } else {
@@ -30,6 +47,6 @@ if ((isset($_POST['usuario'])) && (isset($_POST['senha']))) {
     }
   
 } else {
-    $_SESSION['loginErro'] = "Usuário ou senha vazios!";
+    $_SESSION['loginErro'] = "Usuário ou senha inválido";
     header("Location: login.php");
 }

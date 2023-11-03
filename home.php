@@ -127,7 +127,7 @@ if (isset($_SESSION['success'])) {
                 </p>
 
                 <button class="btn btn-Sm" style="background-color: #1e4fc4; color:#fff;">
-                    Check out my profile!</button>
+                    <a href="https://www.linkedin.com/in/pedrolcavejon/">Check out my profile!</button></a>
             </div>
     </section>
 
@@ -136,7 +136,7 @@ if (isset($_SESSION['success'])) {
 
         <h1 class="text-light text-center h3">The 3 most searched currencies</h1>
 
-        <div class="cards d-flex container mt-4" style=" margin-bottom:10rem; margin-left:5rem; gap:3rem">
+        <div class="cards d-flex container mt-4" id="grade_top_coins" style=" margin-bottom:10rem; margin-left:5rem; gap:3rem">
 
             <div class="" style="width: 15rem;">
                 <img class="card-img-top" id="bitcoin-image" src="" alt="Card image cap" style="width: 100%;">
