@@ -22,7 +22,7 @@ if (isset($_SESSION['success'])) {
 <style>
     table tr th,
     td {
-        background-color: #1E1C1C !important;
+        background-color: #1E1C1C ;
     }
 
     table td {
@@ -45,6 +45,10 @@ if (isset($_SESSION['success'])) {
 
         border: 3px solid #1E1C1C;
 
+    }
+
+    #grade_coins{
+        color: #fff;
     }
 </style>
 

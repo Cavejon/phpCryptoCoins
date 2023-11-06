@@ -40,11 +40,6 @@ include('config/conexao.php');
             </div>
           </div>
 
-          <div class="form-check mt-3 ">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label " for="exampleCheck1">Lembre-se de mim</label>
-          </div>
-
           <input type="submit" value="Submit" class="btn btn-primary mt-3 container"></input>
           <span>Do you don't have account? <a href="register.php">Register Here</a></span>
         </form>
