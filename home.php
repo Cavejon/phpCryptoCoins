@@ -22,12 +22,28 @@ if (isset($_SESSION['success'])) {
 <style>
     table tr th,
     td {
-        background-color: #1E1C1C ;
+        background-color: #1E1C1C;
     }
+
 
     table td {
         width: 4rem;
     }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th,
+    td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+
 
     body::-webkit-scrollbar {
         width: 12px;
@@ -47,8 +63,33 @@ if (isset($_SESSION['success'])) {
 
     }
 
-    #grade_coins{
+    #grade_coins {
         color: #fff;
+    }
+
+    .animate-charcter {
+        text-transform: uppercase;
+        background-image: linear-gradient(-225deg,
+                #231557 0%,
+                #44107a 29%,
+                #ff1361 67%,
+                #fff800 100%);
+        background-size: auto auto;
+        background-clip: border-box;
+        background-size: 200% auto;
+        color: #fff;
+        background-clip: text;
+        text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: textclip 2s linear infinite;
+        display: inline-block;
+    }
+
+    @keyframes textclip {
+        to {
+            background-position: 200% center;
+        }
     }
 </style>
 
@@ -64,12 +105,12 @@ if (isset($_SESSION['success'])) {
 <body style="background-color: #1E1C1C;">
 
     <!-- Section de introdução da CryptoCoins-->
-    <section class="container-foulder">
+    <section class="container-foulder section bg1">
         <div class="container overflow-hidden text-center mt-4">
             <div class="row">
                 <div class="col-md3">
                     <div class="p-3" style="width: 35rem; margin-top:7rem">
-                        <h2 class="text-light mt-5 " style="font-size: 2.6rem">A <span
+                        <h2 class="text-light mt-5 " style="font-size: 2.6rem">A <span class="animate-charcter"
                                 style="color: #1e4fc4;">CryptoCoins</span> yours real-time consultation.</h2>
                         <p style="font-size:1.4rem" class="text-light mt-4">
                             CrytoCoins is the easiest and fastest place to check cryptocurrencies. Register and get
@@ -89,9 +130,9 @@ if (isset($_SESSION['success'])) {
     </section>
 
     <!-- Section de Informação sobre CryptoCoins-->
-    <section class="hall container-fluid d-flex pt-5 " id="about">
+    <section class="hall container-fluid d-flex pt-5 section bg2" id="about">
         <div class="container mt-5" style="width:60rem;">
-            <div class="text-light text-center ">
+            <div class="text-light text-center revealUp">
                 <h1 class="font-weight-normal mb-3  text-uppercase ">About CryptoCoins</h1>
                 <p class="font-weight-normal mb-3 ">
                     The "CryptoCoins" page is an academic project developed as part of the degree in Analysis and
@@ -136,11 +177,12 @@ if (isset($_SESSION['success'])) {
     </section>
 
     <!-- Section de introdução da CryptoCoins-->
-    <section class="container" style="margin-top: 15rem;">
+    <section class="container section bg3" style="margin-top: 15rem;">
 
         <h1 class="text-light text-center h3">The 3 most searched currencies</h1>
 
-        <div class="cards d-flex container mt-4" id="grade_top_coins" style=" margin-bottom:10rem; margin-left:5rem; gap:3rem">
+        <div class="cards d-flex container mt-4" id="grade_top_coins"
+            style=" margin-bottom:10rem; margin-left:5rem; gap:3rem">
 
             <div class="" style="width: 15rem;">
                 <img class="card-img-top" id="bitcoin-image" src="" alt="Card image cap" style="width: 100%;">
@@ -168,23 +210,36 @@ if (isset($_SESSION['success'])) {
         </div>
     </section>
 
-    <section class="table-coins" id="coins">
+    <section class="table-coins section bg4" id="coins">
         <div class="content container">
 
-            <table id="grade_coins" class="table table-dark mb-4 bg-white">
+            <table id="grade_coins" class="table table-dark mb-4 ">
                 <thead>
                     <tr>
                         <th style="width:4rem">Id</th>
-                        <th><img src="assets/images/icons8-coin-80.png" style="width: 1rem;">
-                        </th>
                         <th>Image</th>
                         <th>Name</th>
                         <th>Current Price</th>
                         <th>Last Updated</th>
                     </tr>
                 </thead>
+                
                 <tbody>
-
+                </tbody>
+                <script src="dataCoin.js"></script>
+                <script>
+                    for (const coin of coins) {
+                        document.write(`
+                    <tr>
+                        <td>${coin.id}</td>
+                        <td><img src="${coin.image}"  style="width:4rem; margin-left:5rem;"></td>
+                        <td>${coin.name}</td>
+                        <td>${coin.current_price}</td>
+                        <td>${coin.last_updated}</td>
+                    </tr>
+                `);
+                    }
+                </script>
                 </tbody>
             </table>
         </div>
@@ -199,118 +254,56 @@ if (isset($_SESSION['success'])) {
         <!-- Copyright -->
     </footer>
 </body>
-<script>
-    // $.ajax({
-    //     url: "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en",
-    //     type: 'GET',
-    //     contentType: 'application/json',
-    //     crossDomain: true,
-    //     success: function(data) {
-    //         if (this.readyState == 4 && this.status == 200) {
-    //             const data = JSON.parse(decodeURIComponent(this.responseText)).map(el => {
-    //                 return {
-    //                     ...el,
-    //                     image: `<img src="${el.image}" style="width:3rem"/>`
-    //                 }
-    //             });
-
-    //             $('#grade_coins').DataTable({
-    //                 language: {
-    //                     zeroRecords: 'Nada encontrado, desculpe!',
-    //                     infoEmpty: 'Não há registros disponíveis',
-    //                     search: 'Pesquisar',
-    //                     "paginate": {
-    //                         "first": "Primeira",
-    //                         "last": "Last",
-    //                         "next": "Próxima",
-    //                         "previous": "Anterior"
-    //                     },
-    //                 },
-    //                 "data": data,
-    //                 "columns": [{
-    //                         "data": "id"
-    //                     },
-    //                     {
-    //                         "data": "symbol"
-    //                     },
-    //                     {
-    //                         "data": "image"
-    //                     },
-    //                     {
-    //                         "data": "name"
-    //                     },
-    //                     {
-    //                         "data": "current_price"
-    //                     },
-    //                     {
-    //                         "data": "last_updated"
-    //                     },
-    //                 ]
-    //             });
-    //         }
-    //     }
-    // });
-
-    var xmlhttp = new XMLHttpRequest();
-    var url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en";
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
-
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            const data = JSON.parse(decodeURIComponent(this.responseText));
-
-            // Iterar sobre os dados da API
-            for (const coinData of data) {
-                const coinName = coinData.name;
-
-                if (coinName === "Bitcoin") {
-                    document.getElementById("bitcoin-name").textContent = coinName;
-                    document.getElementById("bitcoin-price").textContent = `Current value R$ ${coinData.current_price.toFixed(2)}`;
-                    document.getElementById("bitcoin-image").src = coinData.image;
-                } else if (coinName === "Ethereum") {
-                    document.getElementById("etherium-name").textContent = coinName;
-                    document.getElementById("etherium-price").textContent = `Current value R$ ${coinData.current_price.toFixed(2)}`;
-                    document.getElementById("etherium-image").src = coinData.image;
-                } else if (coinName === "Tether") {
-                    document.getElementById("tether-name").textContent = coinName;
-                    document.getElementById("tether-price").textContent = `Current value R$ ${coinData.current_price.toFixed(2)}`;
-                    document.getElementById("tether-image").src = coinData.image;
-                }
-            }
-
-            const dataTableData = data.map(coin => {
-                return {
-                    ...coin,
-                    image: `<img src="${coin.image}" style="width:3rem"/>`
-                };
-            });
-
-            $('#grade_coins').DataTable({
-                language: {
-                    zeroRecords: 'Nada encontrado, desculpe!',
-                    infoEmpty: 'Não há registros disponíveis',
-                    search: 'Pesquisar',
-                    "paginate": {
-                        "first": "Primeira",
-                        "last": "Last",
-                        "next": "Próxima",
-                        "previous": "Anterior"
-                    },
-                },
-                "data": dataTableData,
-                "columns": [
-                    { "data": "id" },
-                    { "data": "symbol" },
-                    { "data": "image" },
-                    { "data": "name" },
-                    { "data": "current_price" },
-                    { "data": "last_updated" },
-                ]
-            });
-        }
-    };
 
 
+// $.ajax({
+// url:
+"https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en",
+// type: 'GET',
+// contentType: 'application/json',
+// crossDomain: true,
+// success: function(data) {
+// if (this.readyState == 4 && this.status == 200) {
+// const data = JSON.parse(decodeURIComponent(this.responseText)).map(el => {
+// return {
+// ...el,
+// image: `<img src="${el.image}" style="width:3rem" />`
+// }
+// });
 
-</script>
+// $('#grade_coins').DataTable({
+// language: {
+// zeroRecords: 'Nada encontrado, desculpe!',
+// infoEmpty: 'Não há registros disponíveis',
+// search: 'Pesquisar',
+// "paginate": {
+// "first": "Primeira",
+// "last": "Last",
+// "next": "Próxima",
+// "previous": "Anterior"
+// },
+// },
+// "data": data,
+// "columns": [{
+// "data": "id"
+// },
+// {
+// "data": "symbol"
+// },
+// {
+// "data": "image"
+// },
+// {
+// "data": "name"
+// },
+// {
+// "data": "current_price"
+// },
+// {
+// "data": "last_updated"
+// },
+// ]
+// });
+// }
+// }
+// });
