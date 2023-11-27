@@ -179,7 +179,7 @@ if (isset($_SESSION['success'])) {
     <!-- Section de introdução da CryptoCoins-->
     <section class="container section bg3" style="margin-top: 15rem;">
 
-        <h1 class="text-light text-center h3">The 3 most searched currencies</h1>
+        <h1 class="text-light text-center h3">Your favorite coins</h1>
 
         <div class="cards d-flex container mt-4" id="grade_top_coins"
             style=" margin-bottom:10rem; margin-left:5rem; gap:3rem">
@@ -212,7 +212,7 @@ if (isset($_SESSION['success'])) {
 
     <section class="table-coins section bg4" id="coins">
         <div class="content container">
-
+            <input type="text" id="searchInput" placeholder="Search by Name">
             <table id="grade_coins" class="table table-dark mb-4 ">
                 <thead>
                     <tr>
@@ -221,24 +221,75 @@ if (isset($_SESSION['success'])) {
                         <th>Name</th>
                         <th>Current Price</th>
                         <th>Last Updated</th>
+                        <th>Favorite</th>
                     </tr>
                 </thead>
-                
+
                 <tbody>
                 </tbody>
                 <script src="dataCoin.js"></script>
                 <script>
-                    for (const coin of coins) {
-                        document.write(`
-                    <tr>
-                        <td>${coin.id}</td>
-                        <td><img src="${coin.image}"  style="width:4rem; margin-left:5rem;"></td>
-                        <td>${coin.name}</td>
-                        <td>${coin.current_price}</td>
-                        <td>${coin.last_updated}</td>
-                    </tr>
-                `);
+                    // Adicione um array para armazenar as moedas favoritas
+                    var favoriteCoins = [];
+
+                    // Função para adicionar ou remover uma moeda da lista de favoritos
+                    function toggleFavorite(coinId) {
+                        var index = favoriteCoins.indexOf(coinId);
+
+                        if (index === -1) {
+                            favoriteCoins.push(coinId);
+                        } else {
+                            favoriteCoins.splice(index, 1);
+                        }
+
+                        // Atualiza a exibição das moedas favoritas
+                        updateFavoriteCoins();
                     }
+
+                    // Função para preencher a tabela com os dados do arquivo dataCoin.js
+                    function fillTable() {
+                        var tableBody = document.querySelector('#grade_coins tbody');
+                        tableBody.innerHTML = ''; // Limpa o conteúdo atual da tabela
+
+                        for (const coin of coins) {
+                            tableBody.innerHTML += `
+                <tr>
+                    <td>${coin.id}</td>
+                    <td><img src="${coin.image}" style="width:4rem; margin-left:5rem;"></td>
+                    <td>${coin.name}</td>
+                    <td>${coin.current_price}</td>
+                    <td>${coin.last_updated}</td>
+                    <td><button onclick="toggleFavorite('${coin.id}')" class="btn btn-dark">${favoriteCoins.includes(coin.id) ? 'Unfavorite' : 'Favorite'}</button></td>
+                </tr>
+            `;
+                        }
+
+                        // Atualiza a exibição das moedas favoritas
+                        updateFavoriteCoins();
+                    }
+
+                    // Função para exibir dinamicamente as moedas favoritas na seção acima
+                    function updateFavoriteCoins() {
+                        var favoriteCoinsSection = document.querySelector('#grade_top_coins');
+                        favoriteCoinsSection.innerHTML = ''; // Limpa o conteúdo atual da seção
+
+                        for (const coin of coins) {
+                            if (favoriteCoins.includes(coin.id)) {
+                                favoriteCoinsSection.innerHTML += `
+                    <div class="" style="width: 15rem;">
+                        <img class="card-img-top" src="${coin.image}" alt="Card image cap" style="width: 100%;">
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-light">${coin.current_price}</h5>
+                            <p class="card-text text-light" style="font-size:15px">${coin.name}</p>
+                        </div>
+                    </div>
+                `;
+                            }
+                        }
+                    }
+
+                    // Preenche a tabela inicialmente
+                    fillTable();
                 </script>
                 </tbody>
             </table>
@@ -255,8 +306,8 @@ if (isset($_SESSION['success'])) {
     </footer>
 </body>
 
-
-// $.ajax({
+<!--
+ $.ajax({
 // url:
 "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en",
 // type: 'GET',
@@ -307,3 +358,5 @@ if (isset($_SESSION['success'])) {
 // }
 // }
 // });
+
+-->

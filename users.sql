@@ -30,6 +30,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
+ALTER TABLE usuarios ADD COLUMN foto VARCHAR(255);
+
 
 INSERT INTO `usuarios` (`id`, `nome`, `usuario`, `senha`, `token`) VALUES
 (1, 'Administrador do sistema', 'admin', '202cb962ac59075b964b07152d234b70', 'e0dd669bdfe0821b8083fe92b0689426'),
